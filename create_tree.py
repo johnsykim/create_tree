@@ -57,3 +57,52 @@ while True:
   else:
     print("Please type either \"y\" or \"n\".")
     continue
+
+# Define parameters and exceptions
+
+## Define current working directory
+while True:
+  cwd = input("Desired working directory: ")
+  if not os.path.exists(cwd):
+    print("Desired working directory does not exist. Try again.")
+    continue
+  break
+
+## Define project name and root directory
+while True:
+  proj_name = input("Project name: ")
+  root = cwd + '/' + proj_name
+  if os.path.exists(root):
+    print("Project {} already exists in the defined working directory. Consider another working directory or project name.".format(proj_name))
+    continue
+  break
+
+## Define project branches
+branches = ['code', 'output']
+
+## Define number of collaborators
+while True:
+  try:
+    n_user = input("# of collaborators: ")
+    if int(n_user) <= 0:
+      print("# of collaborators must be a positive integer. Try again.")
+      continue
+    break
+  except ValueError:
+    print("# of collaborators cannot be a string or a non-integer. Try again.")
+
+## Define user ID dictionary
+dict_user = {}
+for n in range(1, int(n_user)+1):
+  dict_user["user_{}".format(n)] = input("User_{} ID: ".format(n))
+
+## Define number of subprojects
+while True:
+  try:
+    n_subproject = input("# of subprojects: ")
+    if int(n_subproject) <= 0:
+      print("# of collaborators must be a positive integer. Try again.")
+      continue
+    break
+  except ValueError:
+    print("# of collaborators cannot be a string or a non-integer. Try again.")
